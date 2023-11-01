@@ -18,7 +18,8 @@
 (defn- map-arg
   [m]
   (->> m
-       (map (fn [[k v]] (str "--" (name k) (when-not (true? v) (str "=" (format-arg v))))))
+       (map (fn [[k v]] (str "--" (name k)
+                             (when-not (true? v) (str "=" (format-arg v))))))
        (str/join " ")))
 
 (defn- and-if
@@ -54,7 +55,7 @@
   [lines]
   (str/join "\n" (map format-line lines)))
 
-(defn- cons-args-fn
+(defn- make-cmd-fn
   [cmd]
   (fn [fst & args]
     (if (and (coll? (first fst))
@@ -62,21 +63,21 @@
       (conj fst (into [cmd] args))
       [(into [cmd fst] args)])))
 
-(def add (cons-args-fn :add))
-(def arg (cons-args-fn :arg))
-(def cmd (cons-args-fn :cmd))
-(def comment (cons-args-fn :#))
-(def copy (cons-args-fn :copy))
-(def entrypoint (cons-args-fn :entrypoint))
-(def env (cons-args-fn :env))
-(def expose (cons-args-fn :expose))
-(def from (cons-args-fn :from))
-(def healthcheck (cons-args-fn :healthcheck))
-(def label (cons-args-fn :label))
-(def onbuild (cons-args-fn :onbuild))
-(def run (cons-args-fn :run))
-(def shell (cons-args-fn :shell))
-(def stopsignal (cons-args-fn :stopsignal))
-(def user (cons-args-fn :user))
-(def volume (cons-args-fn :volume))
-(def workdir (cons-args-fn :workdir))
+(def add (make-cmd-fn :add))
+(def arg (make-cmd-fn :arg))
+(def cmd (make-cmd-fn :cmd))
+(def comment (make-cmd-fn :#))
+(def copy (make-cmd-fn :copy))
+(def entrypoint (make-cmd-fn :entrypoint))
+(def env (make-cmd-fn :env))
+(def expose (make-cmd-fn :expose))
+(def from (make-cmd-fn :from))
+(def healthcheck (make-cmd-fn :healthcheck))
+(def label (make-cmd-fn :label))
+(def onbuild (make-cmd-fn :onbuild))
+(def run (make-cmd-fn :run))
+(def shell (make-cmd-fn :shell))
+(def stopsignal (make-cmd-fn :stopsignal))
+(def user (make-cmd-fn :user))
+(def volume (make-cmd-fn :volume))
+(def workdir (make-cmd-fn :workdir))
