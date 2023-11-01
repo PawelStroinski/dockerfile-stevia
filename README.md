@@ -1,10 +1,10 @@
 # dockerfile-stevia 🍃
 
-Write your Dockerfiles in Clojure (or Babashka)
+Write your Dockerfiles in Clojure (or Babashka).
 
 The idea is that sometimes it might be beneficial to write Dockerfiles programmatically to gain composability and code reuse.
 
-Here are some trivial examples of both hiccup and functional syntaxes.
+Here are some trivial examples of both hiccup-like and functional syntaxes.
 
     (require '[dockerfile.stevia :as d])
 
@@ -38,3 +38,10 @@ Here are some trivial examples of both hiccup and functional syntaxes.
 
 
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
+
+## License
+
+Copyright © 2023 Paweł Stroiński
+
+Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.
