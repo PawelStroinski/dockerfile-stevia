@@ -69,6 +69,8 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     "ADD --chown=myuser:mygroup --chmod=655 files* /somedir/
      COPY --link /foo /bar"
 
+---
+
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
 
 ## License
