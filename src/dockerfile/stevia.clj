@@ -1,5 +1,5 @@
 (ns dockerfile.stevia
-  (:refer-clojure :exclude [format])
+  (:refer-clojure :exclude [comment format])
   (:require [clojure.string :as str]))
 
 (defn- format-line
@@ -24,12 +24,24 @@
       (conj fst (into [cmd] args))
       [(into [cmd fst] args)])))
 
-(def from (cons-args-fn :from))
-(def env (cons-args-fn :env))
-(def run (cons-args-fn :run))
 (def add (cons-args-fn :add))
-(def expose (cons-args-fn :expose))
+(def arg (cons-args-fn :arg))
 (def cmd (cons-args-fn :cmd))
+(def comment (cons-args-fn :#))
+(def copy (cons-args-fn :copy))
+(def entrypoint (cons-args-fn :entrypoint))
+(def env (cons-args-fn :env))
+(def expose (cons-args-fn :expose))
+(def from (cons-args-fn :from))
+(def healthcheck (cons-args-fn :healthcheck))
+(def label (cons-args-fn :label))
+(def onbuild (cons-args-fn :onbuild))
+(def run (cons-args-fn :run))
+(def shell (cons-args-fn :shell))
+(def stopsignal (cons-args-fn :stopsignal))
+(def user (cons-args-fn :user))
+(def volume (cons-args-fn :volume))
+(def workdir (cons-args-fn :workdir))
 
 (format
   [[:from "eclipse-temurin:17"]
