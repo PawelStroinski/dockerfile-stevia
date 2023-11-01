@@ -46,6 +46,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     echo world")
         s/format
         println)
+    =>
     RUN <<EOF
     echo hello
     echo world
@@ -56,6 +57,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     (-> (s/run ["/bin/bash" "-c" "echo hello"])
         s/format
         println)
+    =>
     RUN ["/bin/bash", "-c", "echo hello"]
 
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
