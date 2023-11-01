@@ -14,10 +14,20 @@
   (str
     (some-> cmd name str/upper-case)
     " "
-    (if (coll? (first args))
+    (cond
+      (coll? (second args))
       (->> args
            (map #(str/join " " (map format-arg %)))
            (str/join " && "))
+
+      (coll? (first args))
+      (->> (first args)
+           (map format-arg)
+           (map pr-str)
+           (str/join ", ")
+           (#(str \[ % \])))
+
+      :else
       (str/join " " (map format-arg args)))))
 
 (defn format
@@ -27,7 +37,7 @@
 (defn- cons-args-fn
   [cmd]
   (fn [fst & args]
-    (if (coll? fst)
+    (if (coll? (first fst))
       (conj fst (into [cmd] args))
       [(into [cmd fst] args)])))
 

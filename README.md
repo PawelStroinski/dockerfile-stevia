@@ -51,6 +51,13 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     echo world
     EOF
 
+### [Exec forms](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
+
+    (-> (s/run ["/bin/bash" "-c" "echo hello"])
+        s/format
+        println)
+    RUN ["/bin/bash", "-c", "echo hello"]
+
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
 
 ## License

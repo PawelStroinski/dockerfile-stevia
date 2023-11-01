@@ -36,3 +36,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
 (deftest here-documents
   (is (= "RUN <<EOF\necho hello\necho world\nEOF"
          (s/format (s/run "echo hello\necho world")))))
+
+(deftest exec-forms
+  (is (= "RUN [\"/bin/bash\", \"-c\", \"echo hello\"]"
+         (s/format (s/run ["/bin/bash" "-c" "echo hello"])))))
