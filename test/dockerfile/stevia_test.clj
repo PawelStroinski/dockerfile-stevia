@@ -1,5 +1,5 @@
 (ns dockerfile.stevia-test
-  (:require [dockerfile.stevia :as d]
+  (:require [dockerfile.stevia :as s]
             [clojure.test :refer [deftest testing is]]))
 
 (deftest basic-test
@@ -12,7 +12,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
 
     (testing "Hiccup-like syntax"
       (is (= expected
-             (d/format
+             (s/format
                [[:from "eclipse-temurin:17"]
                 [:env "DEBIAN_FRONTEND" "noninteractive"]
                 [:run "apt-get update"]
@@ -24,11 +24,11 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
 
     (testing "Functional syntax"
       (is (= expected
-             (-> (d/from "eclipse-temurin:17")
-                 (d/env "DEBIAN_FRONTEND" "noninteractive")
-                 (d/run "apt-get update")
-                 (d/add "target/my_app.jar" "version.properties*" "/data/")
-                 (d/expose 9000)
-                 (d/cmd ["cd" "/data/"]
+             (-> (s/from "eclipse-temurin:17")
+                 (s/env "DEBIAN_FRONTEND" "noninteractive")
+                 (s/run "apt-get update")
+                 (s/add "target/my_app.jar" "version.properties*" "/data/")
+                 (s/expose 9000)
+                 (s/cmd ["cd" "/data/"]
                         ["java -cp /data/ -jar my_app.jar"])
-                 (d/format)))))))
+                 (s/format)))))))

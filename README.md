@@ -6,9 +6,9 @@ The idea is that sometimes it might be beneficial to write Dockerfiles programma
 
 Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
-    (require '[dockerfile.stevia :as d])
+    (require '[dockerfile.stevia :as s])
 
-    (d/format
+    (s/format
       [[:from "eclipse-temurin:17"]
        [:env "DEBIAN_FRONTEND" "noninteractive"]
        [:run "apt-get update"]
@@ -27,14 +27,14 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     
     # Note how the CMD was automatically &&-ed. 
     
-    (-> (d/from "eclipse-temurin:17")
-        (d/env "DEBIAN_FRONTEND" "noninteractive")
-        (d/run "apt-get update")
-        (d/add "target/my_app.jar" "version.properties*" "/data/")
-        (d/expose 9000)
-        (d/cmd ["cd" "/data/"]
+    (-> (s/from "eclipse-temurin:17")
+        (s/env "DEBIAN_FRONTEND" "noninteractive")
+        (s/run "apt-get update")
+        (s/add "target/my_app.jar" "version.properties*" "/data/")
+        (s/expose 9000)
+        (s/cmd ["cd" "/data/"]
                ["java -cp /data/ -jar my_app.jar"])
-        (d/format))
+        (s/format))
     =>
     (same as above)
 
