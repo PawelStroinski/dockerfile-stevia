@@ -44,21 +44,16 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
 ### Here-Document
 
-[(reference)](https://docs.docker.com/engine/reference/builder/#here-documents)
-
     (-> (s/run "echo hello
     echo world")
-        s/format
-        println)
+        s/format)
     =>
-    RUN <<EOF
-    echo hello
-    echo world
-    EOF
+    "RUN <<EOF
+     echo hello
+     echo world
+     EOF"
 
 ### Exec form
-
-[(reference)](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
 
     (-> (s/run ["/bin/bash" "-c" "echo hello"])
         s/format
