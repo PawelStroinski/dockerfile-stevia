@@ -42,22 +42,3 @@
 (def user (cons-args-fn :user))
 (def volume (cons-args-fn :volume))
 (def workdir (cons-args-fn :workdir))
-
-(format
-  [[:from "eclipse-temurin:17"]
-   [:env "DEBIAN_FRONTEND" "noninteractive"]
-   [:run "apt-get update"]
-   [:add "target/my_app.jar" "version.properties*" "/data/"]
-   [:expose 9000]
-   [:cmd
-    ["cd" "/data/"]
-    ["java -cp /data/ -jar my_app.jar"]]])
-
-(-> (from "eclipse-temurin:17")
-    (env "DEBIAN_FRONTEND" "noninteractive")
-    (run "apt-get update")
-    (add "target/my_app.jar" "version.properties*" "/data/")
-    (expose 9000)
-    (cmd ["cd" "/data/"]
-         ["java -cp /data/ -jar my_app.jar"])
-    (format))
