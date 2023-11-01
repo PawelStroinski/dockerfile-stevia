@@ -42,7 +42,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
 ## Other features
 
-### [Here-Document](https://docs.docker.com/engine/reference/builder/#here-documents)
+### Here-Document [(link)](https://docs.docker.com/engine/reference/builder/#here-documents)
 
     (-> (s/run "echo hello
     echo world")
@@ -54,7 +54,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     echo world
     EOF
 
-### [Exec form](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
+### Exec form [(link)](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
 
     (-> (s/run ["/bin/bash" "-c" "echo hello"])
         s/format
