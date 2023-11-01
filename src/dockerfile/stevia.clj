@@ -15,10 +15,10 @@
     :else
     arg))
 
-(defn map-arg
+(defn- map-arg
   [m]
   (->> m
-       (map (fn [[k v]] (str "--" (name k) "=" (format-arg v))))
+       (map (fn [[k v]] (str "--" (name k) (when-not (true? v) (str "=" (format-arg v))))))
        (str/join " ")))
 
 (defn- and-if

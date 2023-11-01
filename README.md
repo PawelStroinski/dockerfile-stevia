@@ -2,7 +2,9 @@
 
 Write your Dockerfiles in Clojure (or Babashka).
 
-The idea is that sometimes it might be beneficial to write [Dockerfiles](https://docs.docker.com/engine/reference/builder/) programmatically to gain composability and code reuse.
+The idea is that sometimes it might be beneficial to
+write [Dockerfiles](https://docs.docker.com/engine/reference/builder/) programmatically to gain composability and code
+reuse.
 
 Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
@@ -59,6 +61,15 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
         println)
     =>
     RUN ["/bin/bash", "-c", "echo hello"]
+
+### Map arguments
+
+    (-> (s/add {:chown :myuser:mygroup :chmod 655} "files*" "/somedir/")
+        (s/copy {:link true} "/foo /bar")
+        s/format)
+    =>
+    "ADD --chown=myuser:mygroup --chmod=655 files* /somedir/
+     COPY --link /foo /bar"
 
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
 
