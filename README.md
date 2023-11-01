@@ -44,8 +44,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
 ### Here-Document
 
-    (-> (s/run "echo hello
-    echo world")
+    (-> (s/run "echo hello\necho world")
         s/format)
     =>
     "RUN <<EOF
