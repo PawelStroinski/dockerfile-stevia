@@ -9,6 +9,12 @@
     (str "<<EOF\n" arg "\nEOF")
     arg))
 
+(defn map-arg
+  [m]
+  (->> m
+       (map (fn [[k v]] (str "--" (name k) "=" (format-arg v))))
+       (str/join " ")))
+
 (defn- and-if
   [args]
   (->> args
@@ -26,6 +32,7 @@
 (defn- format-args
   [args]
   (cond
+    (map? (first args)) (str (-> args first map-arg) " " (-> args rest format-args))
     (coll? (second args)) (and-if args)
     (coll? (first args)) (exec-form args)
     :else (str/join " " (map format-arg args))))
@@ -44,7 +51,8 @@
 (defn- cons-args-fn
   [cmd]
   (fn [fst & args]
-    (if (coll? (first fst))
+    (if (and (coll? (first fst))
+             (not (map? fst)))
       (conj fst (into [cmd] args))
       [(into [cmd fst] args)])))
 

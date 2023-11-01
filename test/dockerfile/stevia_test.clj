@@ -40,3 +40,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
 (deftest exec-form
   (is (= "RUN [\"/bin/bash\", \"-c\", \"echo hello\"]"
          (s/format (s/run ["/bin/bash" "-c" "echo hello"])))))
+
+(deftest map-argument
+  (is (= "ADD --chown=myuser:mygroup --chmod=655 files* /somedir/"
+         (s/format (s/add {:chown :myuser:mygroup :chmod 655} "files*" "/somedir/")))))
