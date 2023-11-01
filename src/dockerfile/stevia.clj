@@ -4,9 +4,15 @@
 
 (defn- format-arg
   [arg]
-  (if (and (string? arg)
-           (str/includes? arg "\n"))
+  (cond
+    (and (string? arg)
+         (str/includes? arg "\n"))
     (str "<<EOF\n" arg "\nEOF")
+
+    (keyword? arg)
+    (name arg)
+
+    :else
     arg))
 
 (defn- and-if

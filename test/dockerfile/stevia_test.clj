@@ -14,7 +14,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
       (is (= expected
              (s/format
                [[:from "eclipse-temurin:17"]
-                [:env "DEBIAN_FRONTEND" "noninteractive"]
+                [:env :DEBIAN_FRONTEND :noninteractive]
                 [:run "apt-get update"]
                 [:add "target/my_app.jar" "version.properties*" "/data/"]
                 [:expose 9000]
@@ -25,7 +25,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
     (testing "Functional syntax"
       (is (= expected
              (-> (s/from "eclipse-temurin:17")
-                 (s/env "DEBIAN_FRONTEND" "noninteractive")
+                 (s/env :DEBIAN_FRONTEND :noninteractive)
                  (s/run "apt-get update")
                  (s/add "target/my_app.jar" "version.properties*" "/data/")
                  (s/expose 9000)

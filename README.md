@@ -10,7 +10,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
     (s/format
       [[:from "eclipse-temurin:17"]
-       [:env "DEBIAN_FRONTEND" "noninteractive"]
+       [:env :DEBIAN_FRONTEND :noninteractive]
        [:run "apt-get update"]
        [:add "target/my_app.jar" "version.properties*" "/data/"]
        [:expose 9000]
@@ -28,7 +28,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     # Note how the CMD was automatically &&-ed. 
     
     (-> (s/from "eclipse-temurin:17")
-        (s/env "DEBIAN_FRONTEND" "noninteractive")
+        (s/env :DEBIAN_FRONTEND :noninteractive)
         (s/run "apt-get update")
         (s/add "target/my_app.jar" "version.properties*" "/data/")
         (s/expose 9000)
