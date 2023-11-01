@@ -4,7 +4,7 @@ Write your Dockerfiles in Clojure (or Babashka).
 
 The idea is that sometimes it might be beneficial to write Dockerfiles programmatically to gain composability and code reuse.
 
-Here are some trivial examples of both hiccup-like and functional syntaxes.
+Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
     (require '[dockerfile.stevia :as d])
 
