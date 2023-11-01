@@ -2,6 +2,13 @@
   (:refer-clojure :exclude [comment format])
   (:require [clojure.string :as str]))
 
+(defn- format-arg
+  [arg]
+  (if (and (string? arg)
+           (str/includes? arg "\n"))
+    (str "<<EOF\n" arg "\nEOF")
+    arg))
+
 (defn- format-line
   [[cmd & args :as _line]]
   (str
@@ -9,9 +16,9 @@
     " "
     (if (coll? (first args))
       (->> args
-           (map (partial str/join " "))
+           (map #(str/join " " (map format-arg %)))
            (str/join " && "))
-      (str/join " " args))))
+      (str/join " " (map format-arg args)))))
 
 (defn format
   [lines]

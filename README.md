@@ -38,6 +38,18 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     =>
     (same as above)
 
+## Other features
+
+### Render newlines as [Here-Documents](https://docs.docker.com/engine/reference/builder/#here-documents)
+
+    (-> (s/run "echo hello
+    echo world")
+        s/format
+        println)
+    RUN <<EOF
+    echo hello
+    echo world
+    EOF
 
 This library has been heavily inspired by [Honey SQL](https://github.com/seancorfield/honeysql).
 

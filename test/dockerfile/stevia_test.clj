@@ -1,6 +1,6 @@
 (ns dockerfile.stevia-test
-  (:require [dockerfile.stevia :as s]
-            [clojure.test :refer [deftest testing is]]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [dockerfile.stevia :as s]))
 
 (deftest basic-test
   (let [expected "FROM eclipse-temurin:17
@@ -32,3 +32,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
                  (s/cmd ["cd" "/data/"]
                         ["java -cp /data/ -jar my_app.jar"])
                  (s/format)))))))
+
+(deftest render-newlines-as-here-documents
+  (is (= "RUN <<EOF\necho hello\necho world\nEOF"
+         (s/format (s/run "echo hello\necho world")))))
