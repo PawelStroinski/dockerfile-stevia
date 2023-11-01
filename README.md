@@ -40,7 +40,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
 ## Other features
 
-### Render newlines as [Here-Documents](https://docs.docker.com/engine/reference/builder/#here-documents)
+### [Here-Documents](https://docs.docker.com/engine/reference/builder/#here-documents)
 
     (-> (s/run "echo hello
     echo world")

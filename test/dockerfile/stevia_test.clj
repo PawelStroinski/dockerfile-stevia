@@ -33,6 +33,6 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
                         ["java -cp /data/ -jar my_app.jar"])
                  (s/format)))))))
 
-(deftest render-newlines-as-here-documents
+(deftest here-documents
   (is (= "RUN <<EOF\necho hello\necho world\nEOF"
          (s/format (s/run "echo hello\necho world")))))
