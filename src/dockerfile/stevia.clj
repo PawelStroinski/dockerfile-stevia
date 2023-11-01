@@ -9,26 +9,33 @@
     (str "<<EOF\n" arg "\nEOF")
     arg))
 
+(defn- and-if
+  [args]
+  (->> args
+       (map #(str/join " " (map format-arg %)))
+       (str/join " && ")))
+
+(defn- exec-form
+  [args]
+  (->> (first args)
+       (map format-arg)
+       (map pr-str)
+       (str/join ", ")
+       (#(str \[ % \]))))
+
+(defn- format-args
+  [args]
+  (cond
+    (coll? (second args)) (and-if args)
+    (coll? (first args)) (exec-form args)
+    :else (str/join " " (map format-arg args))))
+
 (defn- format-line
   [[cmd & args :as _line]]
   (str
     (some-> cmd name str/upper-case)
     " "
-    (cond
-      (coll? (second args))
-      (->> args
-           (map #(str/join " " (map format-arg %)))
-           (str/join " && "))
-
-      (coll? (first args))
-      (->> (first args)
-           (map format-arg)
-           (map pr-str)
-           (str/join ", ")
-           (#(str \[ % \])))
-
-      :else
-      (str/join " " (map format-arg args)))))
+    (format-args args)))
 
 (defn format
   [lines]

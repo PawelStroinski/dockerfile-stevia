@@ -2,7 +2,7 @@
 
 Write your Dockerfiles in Clojure (or Babashka).
 
-The idea is that sometimes it might be beneficial to write Dockerfiles programmatically to gain composability and code reuse.
+The idea is that sometimes it might be beneficial to write [Dockerfiles](https://docs.docker.com/engine/reference/builder/) programmatically to gain composability and code reuse.
 
 Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
@@ -40,7 +40,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
 
 ## Other features
 
-### [Here-Documents](https://docs.docker.com/engine/reference/builder/#here-documents)
+### [Here-Document](https://docs.docker.com/engine/reference/builder/#here-documents)
 
     (-> (s/run "echo hello
     echo world")
@@ -51,7 +51,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
     echo world
     EOF
 
-### [Exec forms](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
+### [Exec form](https://docs.docker.com/engine/reference/builder/#exec-form-entrypoint-example)
 
     (-> (s/run ["/bin/bash" "-c" "echo hello"])
         s/format
