@@ -27,7 +27,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
      EXPOSE 9000
      CMD cd /data/ && java -cp /data/ -jar my_app.jar"
     
-    # Note how the CMD was automatically &&-ed. 
+    ;; Note how the CMD was automatically &&-ed. 
     
     (-> (s/from "eclipse-temurin:17")
         (s/env :DEBIAN_FRONTEND :noninteractive)
