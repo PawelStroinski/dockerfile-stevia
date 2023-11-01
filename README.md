@@ -38,7 +38,7 @@ Here are some trivial examples of both Hiccup-like and functional syntaxes.
                ["java -cp /data/ -jar my_app.jar"])
         (s/format))
     =>
-    (same as above)
+    ;; Same as above.
 
 ## Other features
 
