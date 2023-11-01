@@ -10,7 +10,7 @@ ADD target/my_app.jar version.properties* /data/
 EXPOSE 9000
 CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
 
-    (testing "hiccup-like syntax"
+    (testing "Hiccup-like syntax"
       (is (= expected
              (d/format
                [[:from "eclipse-temurin:17"]
@@ -22,7 +22,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
                  ["cd" "/data/"]
                  ["java -cp /data/ -jar my_app.jar"]]]))))
 
-    (testing "functional syntax"
+    (testing "Functional syntax"
       (is (= expected
              (-> (d/from "eclipse-temurin:17")
                  (d/env "DEBIAN_FRONTEND" "noninteractive")
