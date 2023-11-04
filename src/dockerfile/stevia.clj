@@ -10,7 +10,7 @@
     (str "<<EOF\n" arg "\nEOF")
 
     (keyword? arg)
-    (name arg)
+    (subs (str arg) 1)
 
     :else
     arg))
@@ -58,7 +58,8 @@
 (defn- make-cmd-fn
   [cmd]
   (fn [fst & args]
-    (if (and (coll? (first fst))
+    (if (and (coll? fst)
+             (coll? (first fst))
              (not (map? fst)))
       (conj fst (into [cmd] args))
       [(into [cmd fst] args)])))

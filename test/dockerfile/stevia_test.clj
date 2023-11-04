@@ -46,3 +46,7 @@ CMD cd /data/ && java -cp /data/ -jar my_app.jar"]
          (-> (s/add {:chown :myuser:mygroup :chmod 655} "files*" "/somedir/")
              (s/copy {:link true} "/foo /bar")
              s/format))))
+
+(deftest namespaced-keyword-arg
+  (is (= "ADD dir/file"
+         (s/format (s/add :dir/file)))))
